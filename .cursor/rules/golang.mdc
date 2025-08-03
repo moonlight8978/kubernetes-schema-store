@@ -1,0 +1,248 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+
+## Project Overview
+You are working on a Golang utilities application that runs on Kubernetes and works with the K8s API to generate object/CRDs JSON schema from OpenAPI documentation. This application needs to authenticate with Kubernetes clusters using multiple sources and follows Go best practices.
+
+## Code Style and Conventions
+
+### Go Language Standards
+- Use Go 1.21+ features and idioms
+- Follow effective Go guidelines and Go Code Review Comments
+- Use `gofmt`, `goimports`, and `golangci-lint` for formatting and linting
+- Prefer composition over inheritance
+- Use interfaces for abstraction and testing
+- Follow the principle of "accept interfaces, return structs"
+
+### Naming Conventions
+- Use camelCase for variables and functions
+- Use PascalCase for exported types, functions, and constants
+- Use ALL_CAPS for constants
+- Use descriptive names that clearly indicate purpose
+- Package names should be lowercase, single word, no underscores
+- Use verb-noun pattern for functions (e.g., `GenerateSchema`, `AuthenticateCluster`)
+
+### Error Handling
+- Always handle errors explicitly - never ignore them
+- Use `fmt.Errorf` for wrapping errors with context
+- Use `errors.Is` and `errors.As` for error checking
+- Create custom error types for domain-specific errors
+- Return errors as the last return value
+- Use sentinel errors for expected error conditions
+
+### Imports Organization
+- Group imports in this order:
+  1. Standard library packages
+  2. Third-party packages
+  3. Local application packages
+- Use blank lines to separate groups
+- Use dot imports sparingly and only for testing packages
+
+## Project Structure
+
+Follow this standard Go project layout:
+
+```
+/
+├── cmd/                    # Main applications
+│   └── schema-generator/   # Main CLI application
+├── pkg/                    # Library code for external use
+│   ├── auth/              # Kubernetes authentication
+│   ├── client/            # Kubernetes client wrapper
+│   ├── schema/            # Schema generation logic
+│   └── openapi/           # OpenAPI document handling
+├── internal/              # Private application code
+│   ├── config/            # Configuration management
+│   ├── handlers/          # Request handlers
+│   └── utils/             # Internal utilities
+├── api/                   # API definitions (OpenAPI/swagger specs)
+├── deployments/           # Kubernetes deployment files
+├── scripts/               # Build and deployment scripts
+├── test/                  # Additional external test data
+├── docs/                  # Documentation
+├── examples/              # Example configurations
+├── go.mod
+├── go.sum
+├── Dockerfile
+├── Makefile
+├── README.md
+└── .cursorrules
+```
+
+## Kubernetes-Specific Patterns
+
+### Authentication
+- Support multiple authentication methods:
+  - In-cluster service account tokens
+  - Kubeconfig files (default and custom paths)
+  - Token-based authentication
+  - Certificate-based authentication
+- Use kubernetes client-go library patterns
+- Implement graceful fallback between auth methods
+
+### Client Management
+- Use controller-runtime client for CRD operations
+- Implement proper client initialization with retry logic
+- Use contexts for request timeout and cancellation
+- Implement proper resource cleanup and connection pooling
+
+### Resource Handling
+- Use Kubernetes API conventions for resource operations
+- Implement proper field selectors and label selectors
+- Use server-side apply for resource updates
+- Handle API version deprecations gracefully
+
+## Code Organization Patterns
+
+### Package Design
+- Keep packages focused on a single responsibility
+- Use internal packages for implementation details
+- Export only what's necessary for the public API
+- Use interfaces at package boundaries
+
+### Dependency Injection
+- Use constructor functions for dependency injection
+- Prefer explicit dependencies over global state
+- Use functional options pattern for complex constructors
+
+### Configuration
+- Use environment variables for runtime configuration
+- Support configuration files (YAML/JSON)
+- Implement configuration validation
+- Use struct tags for configuration binding
+
+## Testing Practices
+
+### Unit Testing
+- Write table-driven tests where applicable
+- Use testify for assertions and mocking
+- Test both happy path and error conditions
+- Aim for high test coverage (>80%)
+- Use subtests for organizing test cases
+
+### Integration Testing
+- Use testcontainers for integration tests requiring external dependencies
+- Test Kubernetes interactions using fake clientsets
+- Use environment-specific test configurations
+
+### Testing Structure
+```go
+func TestFunctionName(t *testing.T) {
+    tests := []struct {
+        name     string
+        input    InputType
+        expected ExpectedType
+        wantErr  bool
+    }{
+        // test cases
+    }
+
+    for _, tt := range tests {
+        t.Run(tt.name, func(t *testing.T) {
+            // test implementation
+        })
+    }
+}
+```
+
+## Performance and Efficiency
+
+### Resource Management
+- Use context for timeouts and cancellation
+- Implement proper connection pooling
+- Use sync.Pool for frequently allocated objects
+- Profile applications using pprof
+
+### Kubernetes Operations
+- Use informers and controllers for watching resources
+- Implement exponential backoff for retries
+- Use batch operations where possible
+- Cache frequently accessed data appropriately
+
+## Security Practices
+
+### Authentication and Authorization
+- Validate all inputs from Kubernetes API
+- Use RBAC permissions appropriately
+- Store sensitive data in Kubernetes secrets
+- Implement proper secret rotation
+
+### Code Security
+- Validate all external inputs
+- Use secure defaults for configurations
+- Implement rate limiting for API calls
+- Use secure random number generation
+
+## Documentation Standards
+
+### Code Documentation
+- Write godoc comments for all exported functions and types
+- Include examples in documentation
+- Document complex algorithms and business logic
+- Keep comments up to date with code changes
+
+### API Documentation
+- Document all REST endpoints
+- Include request/response examples
+- Document error codes and responses
+- Use OpenAPI specifications where applicable
+
+## Build and Deployment
+
+### Build Process
+- Use multi-stage Dockerfiles for minimal image size
+- Implement proper dependency management
+- Use semantic versioning for releases
+- Include health checks in deployments
+
+### Kubernetes Deployment
+- Use proper resource limits and requests
+- Implement readiness and liveness probes
+- Use ConfigMaps and Secrets for configuration
+- Follow security best practices (non-root user, read-only filesystem)
+
+## Common Anti-Patterns to Avoid
+
+- Don't use global variables for application state
+- Don't ignore context cancellation
+- Don't use string concatenation for URLs - use url.Parse
+- Don't hardcode timeouts - make them configurable
+- Don't use panics for error handling in libraries
+- Don't modify slices/maps received as parameters without copying
+- Don't use bare returns in functions with named return parameters
+
+## Specific Implementation Guidelines
+
+### Schema Generation
+- Parse OpenAPI specs using established libraries
+- Generate JSON schemas following JSON Schema specification
+- Validate generated schemas before output
+- Support both core Kubernetes types and CRDs
+
+### Client Operations
+- Use typed clients where possible
+- Implement proper retry logic with exponential backoff
+- Handle API server unavailability gracefully
+- Use server-side filtering to reduce network traffic
+
+### Error Messages
+- Provide actionable error messages
+- Include relevant context in error messages
+- Use structured logging for debugging
+- Implement proper error classification
+
+When writing code, always consider the operational aspects of running on Kubernetes, including observability, debugging, and maintenance.
+```
+
+This comprehensive `.cursorrules` file provides detailed guidance for your Golang Kubernetes utilities application, covering all the aspects you mentioned:
+
+1. **Golang best practices** - Code style, error handling, testing patterns
+2. **Kubernetes authentication** - Multiple auth sources, client management
+3. **API integration** - Working with K8s API, OpenAPI docs, schema generation
+4. **Project structure** - Standard Go layout with Kubernetes-specific organization
+5. **Coding conventions** - Naming, imports, documentation, security practices
+
+The rules are specifically tailored for a Kubernetes utilities application that generates schemas from OpenAPI docs, and they'll help maintain consistency and quality in your codebase.
