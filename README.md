@@ -55,3 +55,9 @@ kss --auth-method in-cluster --destination my-s3:/my-bucket
 ```bash
 kss --auth-method kubeconfig --kubeconfig ~/.kube/config --destination my-s3:/my-bucket
 ```
+
+## Roadmap
+
+- [ ] Release the package
+- [ ] Helm chart
+- [ ] `server`: Listen to CRDs changes
