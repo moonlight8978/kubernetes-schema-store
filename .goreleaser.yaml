@@ -8,8 +8,6 @@ builds:
   - binary: kss
     env:
       - CGO_ENABLED=0
-    ldflags:
-      - -s -w -X main.Version={{.Version}} -X main.Author={{.Author}}
     goos:
       - linux
       - windows

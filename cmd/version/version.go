@@ -7,8 +7,8 @@ import (
 )
 
 var (
-	Version = "dev"
-	Author  = "moonlight8978"
+	version = "dev"
+	date    = "unknown"
 )
 
 func NewCommand() *cobra.Command {
@@ -16,7 +16,7 @@ func NewCommand() *cobra.Command {
 		Use:   "version",
 		Short: "Print the version",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Printf("kubernetes-schema-store %s by %s\n", Version, Author)
+			fmt.Printf("kubernetes-schema-store %s build date %s\n", version, date)
 		},
 	}
 }
