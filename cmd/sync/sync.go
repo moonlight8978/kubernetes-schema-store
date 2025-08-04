@@ -1,4 +1,4 @@
-package server
+package sync
 
 import (
 	"github.com/moonlight8978/kubernetes-schema-store/operations"
@@ -11,9 +11,9 @@ func NewCommand() *cobra.Command {
 	serverConfig := config.ServerConfig{}
 
 	cmd := &cobra.Command{
-		Use:   "server",
-		Short: "Start the server",
-		Long:  `Start the server`,
+		Use:   "sync",
+		Short: "Sync the schemas to storage",
+		Long:  `Sync the schemas to storage`,
 		Run: func(cmd *cobra.Command, args []string) {
 			auth := kubernetes.Auth{
 				Method: serverConfig.AuthMethod,
@@ -34,7 +34,7 @@ func NewCommand() *cobra.Command {
 	cmd.Flags().StringVarP(&serverConfig.KubeConfig.Path, "kubeconfig", "p", "", "Kube Config Path")
 
 	cmd.Flags().StringVarP(&serverConfig.Destination, "destination", "d", "", "Rclone destination")
-	cmd.MarkFlagRequired("exporter")
+	cmd.MarkFlagRequired("destination")
 
 	return cmd
 }

@@ -21,21 +21,13 @@ func (auth *Auth) GetCluster() *Cluster {
 	cluster := &Cluster{
 		Config: restConfig,
 	}
-	cluster.Client, err = cluster.NewClient()
-	if err != nil {
-		panic(err)
-	}
-	cluster.ApiExtensionsClient, err = cluster.NewApiExtensionsClient()
-	if err != nil {
-		panic(err)
-	}
 
 	return cluster
 }
 
 func (auth *Auth) BuildConfig() (*rest.Config, error) {
 	switch auth.Method {
-	case "service-account":
+	case "in-cluster":
 		return rest.InClusterConfig()
 	case "kubeconfig":
 		return clientcmd.BuildConfigFromFlags("", auth.KubeConfig.Path)
