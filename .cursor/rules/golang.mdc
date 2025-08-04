@@ -47,29 +47,21 @@ Follow this standard Go project layout:
 
 ```
 /
-├── cmd/                    # Main applications
-│   └── schema-generator/   # Main CLI application
-├── pkg/                    # Library code for external use
-│   ├── auth/              # Kubernetes authentication
-│   ├── client/            # Kubernetes client wrapper
-│   ├── schema/            # Schema generation logic
-│   └── openapi/           # OpenAPI document handling
-├── internal/              # Private application code
-│   ├── config/            # Configuration management
-│   ├── handlers/          # Request handlers
-│   └── utils/             # Internal utilities
-├── api/                   # API definitions (OpenAPI/swagger specs)
-├── deployments/           # Kubernetes deployment files
-├── scripts/               # Build and deployment scripts
+├── cmd/                   # Main applications, command declarations
+├── pkg/                   # Library code for external use
+│   ├── config/            # Common configuration
+│   ├── fs/                # Manage local file system
+│   ├── kubernetes/        # Kubernetes logic
+|   ├── rclone/            # Rclone integration
+│   └── log/               # Application-wide log system
+├── operations/            # Cmd logic, separate it from the declaration from cmd/
 ├── test/                  # Additional external test data
 ├── docs/                  # Documentation
 ├── examples/              # Example configurations
 ├── go.mod
 ├── go.sum
 ├── Dockerfile
-├── Makefile
-├── README.md
-└── .cursorrules
+└── README.md
 ```
 
 ## Kubernetes-Specific Patterns
