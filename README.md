@@ -2,6 +2,12 @@
 
 A simple application to sync Kubernetes CRDs, and objects json schema to a remote storage with rclone
 
+## Motivation
+
+- Save time writing CRDs manifests
+- No more wasting time to lookup for online json schema
+- Can be self-hosted
+
 ## Usage
 
 ### Setup storage and kubernetes connection
@@ -31,6 +37,8 @@ This step can be skipped by removing `no_check_bucket`. Make sure your key has p
 4. (Optional) Create kubeconfig
 
 > kubeconfig files are usually found at `~/.kube`
+
+5. (Optional) Make sure your bucket does not cache the manifests, so they can be updated in the future
 
 ### Upload
 
