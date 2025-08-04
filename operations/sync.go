@@ -50,12 +50,22 @@ func ExportResources(cluster *kubernetes.Cluster, dst string) error {
 	}
 
 	for _, apiResourceList := range apiResources {
-		group, _ := schema.ParseGroupVersion(apiResourceList.GroupVersion)
+		group, err := schema.ParseGroupVersion(apiResourceList.GroupVersion)
+		if err != nil {
+			log.Error("Failed to parse group version", "error", err)
+			continue
+		}
+
 		for _, apiResource := range apiResourceList.APIResources {
 			groupVersionKind := kubernetes.ToGroupKindVersion(group, apiResource)
 			metadata := kubernetes.ToSchemaMetadata(group, *groupVersionKind)
 
-			groupSchema, _ := clientDiscoveryResolver.ResolveSchema(*groupVersionKind)
+			groupSchema, err := clientDiscoveryResolver.ResolveSchema(*groupVersionKind)
+			if err != nil {
+				log.Error("Failed to resolve schema", "error", err)
+				continue
+			}
+
 			jsonSchema, err := kubernetes.ToJson(groupSchema)
 			if err != nil {
 				log.Error(fmt.Sprintf("Failed to convert schema to json %s %s %s", group.Group, group.Version, groupVersionKind.Kind), "error", err)
