@@ -1,6 +1,8 @@
 package kubernetes
 
 import (
+	"net/http"
+
 	"github.com/moonlight8978/kubernetes-schema-store/pkg/log"
 	apiExtensions "k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset"
 	"k8s.io/client-go/discovery"
@@ -15,6 +17,7 @@ type Cluster struct {
 	ApiExtensionsClient *apiExtensions.Clientset
 	DynamicClient       *dynamic.DynamicClient
 	DiscoveryClient     *discovery.DiscoveryClient
+	HttpClient          *http.Client
 }
 
 func (cluster *Cluster) NewClient() (*k8s.Clientset, error) {
@@ -59,6 +62,18 @@ func (cluster *Cluster) NewDynamicClient() *dynamic.DynamicClient {
 	cluster.DynamicClient = client
 	log.Debug("Created dynamic client successfully")
 	return client
+}
+
+func (cluster *Cluster) NewHttpClient() *http.Client {
+	transport, err := rest.TransportFor(cluster.Config)
+	if err != nil {
+		log.Error("Failed to create HTTP client", "error", err)
+		panic(err)
+	}
+	cluster.HttpClient = &http.Client{
+		Transport: transport,
+	}
+	return cluster.HttpClient
 }
 
 // Deprecated: Use the individual New*Client methods that return errors instead

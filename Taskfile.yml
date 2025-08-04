@@ -1,0 +1,12 @@
+version: 3
+
+tasks:
+  sync:
+    vars:
+      kubeconfig: "{{index .MATCH 0}}"
+      destination: "{{index .MATCH 1}}"
+    cmds:
+      - go run . sync --auth-method kubeconfig --kubeconfig {{.kubeconfig}} --destination {{.destination}}
+      - |
+        jq -s 'reduce .[] as $doc ( { components: { schemas: {} }, openapi: "3.1.1"  }; .components.schemas += $doc.components.schemas )' /tmp/kubernetes-schema-store/*.json > /tmp/full.json
+      - redocly bundle --dereferenced full.json > expanded.json
