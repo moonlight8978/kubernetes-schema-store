@@ -17,7 +17,7 @@ func ToSchemaMetadata(gv schema.GroupVersion, gvk schema.GroupVersionKind) *Sche
 	return &SchemaMetadata{
 		Package: groupName,
 		Version: gv.Version,
-		Name:    gvk.Kind,
+		Name:    strings.ToLower(gvk.Kind),
 	}
 }
 
@@ -25,7 +25,7 @@ func ToGroupKindVersion(gv schema.GroupVersion, res v1.APIResource) *schema.Grou
 	return &schema.GroupVersionKind{
 		Group:   gv.Group,
 		Version: gv.Version,
-		Kind:    strings.ToLower(res.Kind),
+		Kind:    res.Kind,
 	}
 }
 
