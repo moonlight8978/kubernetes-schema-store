@@ -58,6 +58,7 @@ kss --auth-method kubeconfig --kubeconfig ~/.kube/config --destination my-s3:/my
 
 ## Roadmap
 
+- [ ] Sync all k8s builtin object schemas
 - [ ] Release the package
 - [ ] Helm chart
 - [ ] `server`: Listen to CRDs changes
