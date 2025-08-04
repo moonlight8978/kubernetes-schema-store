@@ -8,7 +8,7 @@ ARG KSS_VERSION
 
 RUN apk add --no-cache curl
 
-RUN curl -fsSL https://github.com/moonlight8978/kubernetes-schema-store/releases/download/${KSS_VERSION}/kubernetes-schema-store_${TARGETOS}_${TARGET_ARCH}.tar.gz | tar -xzf - -C /tmp \
+RUN curl -fsSL https://github.com/moonlight8978/kubernetes-schema-store/releases/download/${KSS_VERSION}/kubernetes-schema-store_${TARGETOS}_${TARGETARCH}.tar.gz | tar -xzf - -C /tmp \
   && chmod +x /tmp/kss
 
 FROM base
