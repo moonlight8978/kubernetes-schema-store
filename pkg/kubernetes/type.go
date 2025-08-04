@@ -1,4 +1,4 @@
-package schema
+package kubernetes
 
 type SchemaMetadata struct {
 	Package string
