@@ -34,3 +34,6 @@ go.work.sum
 # Tmp files
 tmp/
 .tmp/
+
+# Build
+dist/
