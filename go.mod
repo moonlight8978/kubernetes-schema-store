@@ -3,7 +3,7 @@ module github.com/moonlight8978/kubernetes-schema-store
 go 1.24.4
 
 require (
-	github.com/rclone/rclone v1.71.0
+	github.com/rclone/rclone v1.71.1
 	github.com/spf13/cobra v1.10.1
 	k8s.io/apiextensions-apiserver v0.34.1
 	k8s.io/apimachinery v0.34.1
