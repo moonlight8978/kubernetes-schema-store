@@ -9,7 +9,7 @@ require (
 	k8s.io/apimachinery v0.34.2
 	k8s.io/apiserver v0.34.2
 	k8s.io/client-go v0.34.2
-	k8s.io/kube-openapi v0.0.0-20250905212525-66792eed8611
+	k8s.io/kube-openapi v0.0.0-20250910181357-589584f1c912
 )
 
 require (
