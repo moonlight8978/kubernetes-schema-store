@@ -4,7 +4,7 @@ go 1.24.4
 
 require (
 	github.com/rclone/rclone v1.72.0
-	github.com/spf13/cobra v1.10.1
+	github.com/spf13/cobra v1.10.2
 	k8s.io/apiextensions-apiserver v0.34.2
 	k8s.io/apimachinery v0.34.2
 	k8s.io/apiserver v0.34.2
