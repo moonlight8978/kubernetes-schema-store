@@ -3,7 +3,7 @@ module github.com/moonlight8978/kubernetes-schema-store
 go 1.25.0
 
 require (
-	github.com/rclone/rclone v1.73.0
+	github.com/rclone/rclone v1.73.1
 	github.com/spf13/cobra v1.10.2
 	k8s.io/apiextensions-apiserver v0.35.1
 	k8s.io/apimachinery v0.35.1
@@ -23,7 +23,7 @@ require (
 	github.com/Azure/azure-sdk-for-go/sdk/storage/azfile v1.5.3 // indirect
 	github.com/Azure/go-ntlmssp v0.0.2-0.20251110135918-10b7b7e7cd26 // indirect
 	github.com/AzureAD/microsoft-authentication-library-for-go v1.6.0 // indirect
-	github.com/FilenCloudDienste/filen-sdk-go v0.0.35 // indirect
+	github.com/FilenCloudDienste/filen-sdk-go v0.0.37 // indirect
 	github.com/Files-com/files-sdk-go/v3 v3.2.264 // indirect
 	github.com/IBM/go-sdk-core/v5 v5.21.0 // indirect
 	github.com/Max-Sum/base32768 v0.0.0-20230304063302-18e6ce5945fd // indirect
@@ -95,7 +95,7 @@ require (
 	github.com/fxamacker/cbor/v2 v2.9.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.11 // indirect
 	github.com/geoffgarside/ber v1.2.0 // indirect
-	github.com/go-chi/chi/v5 v5.2.3 // indirect
+	github.com/go-chi/chi/v5 v5.2.5 // indirect
 	github.com/go-darwin/apfs v0.0.0-20211011131704-f84b94dbf348 // indirect
 	github.com/go-git/go-billy/v5 v5.6.2 // indirect
 	github.com/go-logr/logr v1.4.3 // indirect
@@ -130,7 +130,7 @@ require (
 	github.com/henrybear327/Proton-API-Bridge v1.0.0 // indirect
 	github.com/henrybear327/go-proton-api v1.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
-	github.com/internxt/rclone-adapter v0.0.0-20260130171252-c3c6ebb49276 // indirect
+	github.com/internxt/rclone-adapter v0.0.0-20260213125353-6f59c89fcb7c // indirect
 	github.com/jcmturner/aescts/v2 v2.0.0 // indirect
 	github.com/jcmturner/dnsutils/v2 v2.0.0 // indirect
 	github.com/jcmturner/gofork v1.7.6 // indirect
