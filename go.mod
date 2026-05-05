@@ -9,7 +9,7 @@ require (
 	k8s.io/apimachinery v0.36.0
 	k8s.io/apiserver v0.36.0
 	k8s.io/client-go v0.36.0
-	k8s.io/kube-openapi v0.0.0-20260317180543-43fb72c5454a
+	k8s.io/kube-openapi v0.0.0-20260505163821-33341827b392
 )
 
 require (
@@ -107,7 +107,18 @@ require (
 	github.com/go-openapi/jsonpointer v0.21.0 // indirect
 	github.com/go-openapi/jsonreference v0.20.2 // indirect
 	github.com/go-openapi/strfmt v0.25.0 // indirect
-	github.com/go-openapi/swag v0.23.0 // indirect
+	github.com/go-openapi/swag v0.25.4 // indirect
+	github.com/go-openapi/swag/cmdutils v0.25.4 // indirect
+	github.com/go-openapi/swag/conv v0.25.4 // indirect
+	github.com/go-openapi/swag/fileutils v0.25.4 // indirect
+	github.com/go-openapi/swag/jsonname v0.25.4 // indirect
+	github.com/go-openapi/swag/jsonutils v0.25.4 // indirect
+	github.com/go-openapi/swag/loading v0.25.4 // indirect
+	github.com/go-openapi/swag/mangling v0.25.4 // indirect
+	github.com/go-openapi/swag/netutils v0.25.4 // indirect
+	github.com/go-openapi/swag/stringutils v0.25.4 // indirect
+	github.com/go-openapi/swag/typeutils v0.25.4 // indirect
+	github.com/go-openapi/swag/yamlutils v0.25.4 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.30.1 // indirect
