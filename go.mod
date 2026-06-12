@@ -5,10 +5,10 @@ go 1.26.0
 require (
 	github.com/rclone/rclone v1.74.3
 	github.com/spf13/cobra v1.10.2
-	k8s.io/apiextensions-apiserver v0.36.1
-	k8s.io/apimachinery v0.36.1
-	k8s.io/apiserver v0.36.1
-	k8s.io/client-go v0.36.1
+	k8s.io/apiextensions-apiserver v0.36.2
+	k8s.io/apimachinery v0.36.2
+	k8s.io/apiserver v0.36.2
+	k8s.io/client-go v0.36.2
 	k8s.io/kube-openapi v0.0.0-20260317180543-43fb72c5454a
 )
 
@@ -242,7 +242,7 @@ require (
 	gopkg.in/validator.v2 v2.0.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	k8s.io/api v0.36.1 // indirect
+	k8s.io/api v0.36.2 // indirect
 	k8s.io/klog/v2 v2.140.0 // indirect
 	k8s.io/utils v0.0.0-20260210185600-b8788abfbbc2 // indirect
 	moul.io/http2curl/v2 v2.3.0 // indirect
